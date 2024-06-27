@@ -5,7 +5,7 @@
 //   solhsa.com/interpolation/
 //   github.com/ai/easings.net
 
-function ease(_amount, _easing = EASE_LINEAR){
+function ease(_amount, _easing = "__ease_none"){
     return __easings()[$ _easing](clamp(_amount, 0, 1)) }
 
 function interpolate(_from, _to, _amount, _easing = EASE_LINEAR){
@@ -22,6 +22,9 @@ function __easings(){ static __instance = new (function() constructor {
     //Epsilon-safe square root
     __sqrt = function(_z){ 
         return (sign(_z) == 1)? sqrt(_z) : 0 };
+        
+    //No ease
+    __ease_none = function(_z){ return _z >= 0.5; }
     
     //Easings functions    
     _set(EASE_LINEAR,      function(_z){ return _z });
@@ -63,7 +66,7 @@ function __easings(){ static __instance = new (function() constructor {
         if (_z < 0.5) return (1 - __bounce(1 -  2*_z))/2
                       return (1 + __bounce(2*_z -  1))/2 });
     
-    _set(EASE_IN_BOUNCE, function(_z){ return 1 - __out_bounce(1 - _z) });
+    _set(EASE_IN_BOUNCE, function(_z){ return 1 - __bounce(1 - _z) });
 
     _set(EASE_IN_CIRC,    function(_z){ return 1 - __sqrt(1 - power( _z,      2)) });
     _set(EASE_OUT_CIRC,   function(_z){ return     __sqrt(1 - power((_z - 1), 2)) });
