@@ -23,8 +23,7 @@ function __easings(){ static __instance = new (function() constructor {
     __sqrt = function(_z){ return (sign(_z) == 1)? sqrt(_z) : 0 };
     
     //Easings functions    
-    _set(__EASE_NONE,           function(_z){ return _z >= 0.5 };
-
+    _set(__EASE_NONE,      function(_z){ return _z >= 0.5 };
     _set(EASE_LINEAR,      function(_z){ return _z });
 
     _set(EASE_IN_QUAD,     function(_z){ return power(_z, 2) });
@@ -79,19 +78,19 @@ function __easings(){ static __instance = new (function() constructor {
                          return (power(2*_z,     2)*(3.5949095*(_z*2    ) - 2.5949095)    )/2 });
 
     _set(EASE_IN_ELASTIC, function(_z){
-    	static __c = 2*pi/3;
+        static __c = 2*pi/3;
         if (_z == 0.0) { return 0 }
         if (_z == 1.0) { return 1 }
         return -power(2, 10*_z - 10)*sin((_z*10 - 10.75)*__c) });
 
     _set(EASE_OUT_ELASTIC, function(_z){
-    	static __c = 2*pi/3;
+        static __c = 2*pi/3;
         if (_z == 0.0) { return 0 }
         if (_z == 1.0) { return 1 }
         return power(2, -10*_z) * sin((_z*10 - 0.75)*__c) + 1 });        
 
     _set(EASE_INOUT_ELASTIC, function(_z){
-    	static __c = 2*pi/4.5;
+        static __c = 2*pi/4.5;
         if (_z == 0.0) { return 0 }
         if (_z == 1.0) { return 1 }
         if (_z >= 0.5) { return   power(2, -20*_z + 10)*sin((20*_z - 11.125)*__c) /2 + 1 }
